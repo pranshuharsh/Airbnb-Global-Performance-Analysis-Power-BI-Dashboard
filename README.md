@@ -1,16 +1,20 @@
-# Airbnb Global Performance Analysis | Power BI Dashboard
+# Airbnb Global Performance Analysis — Power BI Dashboard
 
-A 3-page Power BI dashboard analyzing Airbnb's global performance across 10 cities from 2008 to 2020 — built on 2,79,712 listings and 5.3M reviews. The project examines supply growth lifecycle, pricing by room type, guest satisfaction across 5 dimensions, host trust signals, and seasonal review patterns.
+A 3-page Power BI dashboard analyzing Airbnb's global footprint across **10 cities from 2008 to 2020**, built on nearly 280K listings and 5.3 million reviews. The project maps Airbnb's full supply lifecycle, digs into pricing and guest satisfaction, and surfaces patterns in host trust and seasonal demand.
+
+> Dashboard exported as PDF — see `Airbnb Power BI Project.pdf`
 
 ---
 
-## Business Questions Answered
+## What This Project Covers
+
+Six questions drove the analysis:
 
 - Which cities dominate Airbnb's global market share?
-- How did listing inventory evolve across Airbnb's growth lifecycle?
-- Which room types generate the highest average prices?
-- What dimensions of guest experience most affect satisfaction scores?
-- What seasonal patterns drive review activity across cities?
+- How did listing supply evolve through Airbnb's growth phases?
+- Which room types command the highest prices?
+- What dimensions of guest experience most influence satisfaction?
+- What seasonal patterns show up in review activity?
 - How verified and trustworthy is the host base?
 
 ---
@@ -19,7 +23,7 @@ A 3-page Power BI dashboard analyzing Airbnb's global performance across 10 citi
 
 ### Page 1 — Supply Growth
 
-Tracks how Airbnb's listing inventory grew and contracted over time, broken down by room type (Entire Place, Private Room, Hotel Room, Shared Room). The timeline is structured across six business phases:
+Tracks how Airbnb's listing inventory grew and contracted over 12 years, broken down by room type (Entire Place, Private Room, Hotel Room, Shared Room). The timeline maps to six business phases:
 
 | Phase | Period | What happened |
 |---|---|---|
@@ -30,31 +34,29 @@ Tracks how Airbnb's listing inventory grew and contracted over time, broken down
 | Reinvention | 2017–2019 | Hotel rooms introduced; new growth phase began |
 | COVID-19 | 2020 | Sharp drop across all listing types |
 
-
 ---
 
 ### Page 2 — Market Share & Ratings
 
 Shows which cities dominate the platform and how guests rate their experience.
 
-- Pareto chart ranks 10 cities by listing count — Paris, NYC, and Sydney together account for nearly half of all listings and 59% of total reviews
-- Average price breakdown by room type: Hotel room ($800) > Entire place ($673) > Shared room ($580) > Private room ($462)
-- Ratings heatmap across 5 dimensions — Accuracy, Cleanliness, Communication, Location, Value — for all 10 cities
-- Cleanliness scores lowest platform-wide; Value scores second lowest, particularly in high-cost cities like NYC and Paris
-
+- **Pareto chart** ranks 10 cities by listing count — Paris, NYC, and Sydney together hold nearly half of all listings and 59% of total reviews
+- **Average price by room type**: Hotel room ($800) > Entire place ($673) > Shared room ($580) > Private room ($462)
+- **Ratings heatmap** covers 5 dimensions (Accuracy, Cleanliness, Communication, Location, Value) across all 10 cities
+- Cleanliness scores lowest platform-wide; Value scores second lowest, especially in high-cost cities like NYC and Paris
 
 ---
 
 ### Page 3 — Trust & Seasonality
 
-Covers host verification patterns and monthly review frequency.
+Covers host verification patterns and how review volume shifts by month.
 
-- 2x2 trust matrix splits hosts by identity verification and profile picture presence
-  - 66.9% are fully verified with a profile photo (highest trust)
-  - Only 0.3% have neither signal (lowest trust)
-- Seasonality chart shows Paris and Rome dominate Apr–Aug reviews; New York peaks Nov–Dec
-- Review frequency: 86.5% of reviewers wrote only once; 98.8% wrote 3 times or fewer
-
+- **2x2 trust matrix** splits hosts by identity verification and profile picture presence
+  - 66.9% are fully verified with a profile photo (highest trust tier)
+  - Only 0.3% have neither signal (lowest trust tier)
+- **Seasonality chart** shows Paris and Rome dominate Apr–Aug reviews, reflecting peak European summer travel; New York peaks Nov–Dec
+- **Review frequency**: 86.5% of reviewers wrote only once; 98.8% wrote 3 times or fewer
+- One reviewer account logged 283 total reviews, with the last two submitted on the same day for two Bangkok listings — flagged as a likely data anomaly
 
 ---
 
@@ -81,7 +83,7 @@ Paris · New York · Sydney · Rome · Rio de Janeiro · Istanbul · Mexico City
 
 | Tool | Usage |
 |---|---|
-| Power BI Desktop | Dashboard building, visual design |
+| Power BI Desktop | Dashboard building and visual design |
 | DAX | 32 custom measures — aggregations, Pareto logic, trust segmentation, seasonality |
 | Power Query | Data transformation, column typing, table relationships |
 | Data Modeling | Two-table fact schema (Listings + Reviews) joined on `listing_id` |
@@ -91,7 +93,7 @@ Paris · New York · Sydney · Rome · Rio de Janeiro · Istanbul · Mexico City
 ## Workflow
 
 ```
-Raw CSV Data → Power Query (Transform & Clean) → Data Modeling (Relationships) → DAX Measures → Dashboard Visualization
+Raw CSV Data → Power Query (Transform & Clean) → Data Modeling → DAX Measures → Dashboard
 ```
 
 ---
@@ -107,7 +109,7 @@ Two fact tables connected via `listing_id`:
 
 ## DAX Highlights
 
-```
+```dax
 -- Pareto cumulative % for city market share
 Cumulative % =
 VAR CurrentRank = [City Rank]
@@ -135,28 +137,33 @@ Verified_Profile =
 
 ## Notable Findings
 
-- Paris, NYC, and Sydney account for ~23%, ~13%, and ~10% of total listings respectively — high market concentration in Western cities
-- Hotel rooms averaged $800 — the highest of any room type — despite being the newest category on the platform (introduced post-2017)
-- Cleanliness is the lowest-rated dimension in nearly every city, pointing to a consistent quality gap at scale
-- Mexico City and Rio de Janeiro rank highest across all satisfaction dimensions; Istanbul and Hong Kong rank lowest
-- 98.8% of reviewers wrote 3 or fewer reviews — the platform's review base is driven almost entirely by one-time guests, not repeat reviewers
-- One reviewer account recorded 283 total reviews, with the last two submitted on the same day for two Bangkok listings — flagged as a potential data anomaly
+- Paris, NYC, and Sydney account for roughly 23%, 13%, and 10% of total listings — supply is heavily concentrated in Western cities
+- Hotel rooms averaged $800, the highest of any room type, despite being the newest category on the platform (introduced post-2017)
+- Cleanliness is the lowest-rated dimension in nearly every city — a consistent quality gap at scale
+- Mexico City and Rio de Janeiro rank highest across all five satisfaction dimensions; Istanbul and Hong Kong rank lowest
+- 98.8% of reviewers wrote 3 or fewer reviews — review volume is driven almost entirely by one-time guests, not repeat contributors
+- One reviewer account recorded 283 reviews, with the last two submitted on the same day for two Bangkok listings — likely a data anomaly worth noting
 
 ---
 
 ## Files in This Repo
 
 ```
-├── Airbnb.pbix                  # Power BI report file
+├── Airbnb Power BI Project.pdf  # Dashboard export (all 3 pages)
 ├── Data/
 │   ├── listings.csv             # Listings data (~280K rows)
 │   └── reviews.csv              # Reviews data (~5.3M rows)
-├── screenshots/
-│   ├── page1.png
-│   ├── page2.png
-│   └── page3.png
 └── README.md
 ```
+
+---
+
+## How to Use
+
+1. Clone or download the repo
+2. Open the `Data/` folder and load `listings.csv` and `reviews.csv` into Power BI Desktop
+3. Rebuild or connect your own `.pbix` file using the data model described above
+4. Refer to `Airbnb Power BI Project.pdf` to see the full dashboard output
 
 ---
 
